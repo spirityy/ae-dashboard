@@ -2,10 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import index from '@/components/Index/Index.vue'
-import overview from '@/components/Overview/Overview.vue'
 import projects from '@/components/Project/Projects.vue'
 import project from '@/components/Project/ProjectDetail.vue'
-
 import mobileapp from '@/components/MobileApp/MobileApp.vue'
 
 Vue.use(Router)
@@ -15,48 +13,41 @@ const router = new Router({
   routes:[
       {
         path: '/',
-        redirect: '/home',
+        redirect: '/home'
       },
       {
         path:'/home',
         component:index,
         meta:{
-          title:'index'
-        }
-      },
-      {
-        path:'/overview',
-        component:overview,
-        meta:{
-          title:'overview'
+          title:''
         }
       },
       {
         path:'/projects',
         component:projects,
         meta:{
-          title:'project'
+          title:'Projects'
         }
       },
       {
         path:'/mobileapp',
         component:mobileapp,
         meta:{
-          title:'mobileapp'
+          title:'MobileApp'
         }
       },
       {
         path:'/projects/:id',
         component:project,
         meta:{
-          title:'project detail'
+          title:'Project Detail'
         }
       }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || ''
+  document.title = to.meta.title?to.meta.title:'AngelEase'
   next()
 })
 

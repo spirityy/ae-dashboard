@@ -31,7 +31,7 @@ header {
     }
     .wrapper {
         background-color: #fff;
-        @include box-shadow(0 3px 3px 0 rgba(0, 0, 0, 0.1));
+        border-bottom: 1px solid #EDEDEF;
         width: 85%;
         height: 80px;
         margin: 0 auto;
@@ -107,7 +107,7 @@ header {
     height: 80px;
     line-height: 80px;
     border-bottom: 1px solid #E8EDEF;
-    padding-left: 2%;
+    padding-left: 25px;
     text-align: left;
   }
   .main{
@@ -127,7 +127,7 @@ header {
             <router-link to="/home">{{ title }}</router-link>
         </h1>
             <div class="header-aciton">
-                <button type="button" name="button" v-on:click="back">Back</button>
+                <button type="button" name="button" v-on:click="back">button</button>
             </div>
         </div>
     </header>
@@ -136,9 +136,6 @@ header {
             <ul>
                 <li>
                     <router-link to="/home">HOME</router-link>
-                </li>
-                <li>
-                    <router-link to="/overview">OVERVIEW</router-link>
                 </li>
                 <li>
                     <router-link to="/projects">PROJECT</router-link>
@@ -171,7 +168,7 @@ export default {
     },
     methods: {
         back: function() {
-            router.go(-1)
+            //router.go(-1)
         }
     }
 }

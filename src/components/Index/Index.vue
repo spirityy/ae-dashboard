@@ -1,22 +1,30 @@
 <style lang="scss" scoped>
 
 @import "../../assets/sass/functions";
-
 .index-wrapper {
     @include clearfix();
 }
 
-.board {
-    text-align: center;
-    margin-bottom: 2%;
+.fl {
+    float: left;
+    width: 30%;
+    margin-right: 2%;
 }
 
-canvas {
+.row {
+    @include clearfix;
+}
+
+.board1,
+.board2 {
+    width: 35%;
+    margin-right: 2%;
     float: left;
 }
 
-.index-col{
-  width: 50%;
+.board3 {
+    float: left;
+    width: 26%;
 }
 
 </style>
@@ -24,26 +32,34 @@ canvas {
 <template>
 
 <div class="index-wrapper">
-    <div class="board">
-      <h2>募集项目</h2>
-      <div class="main">
-        <column :class="colClass"></column>
-        <canvas id="pie1" width="400" height="300"></canvas>
-      </div>
+    <div class="row">
+        <div class="board board1">
+            <h2>募集项目</h2>
+            <div class="main">
+                <column :cols="collectProject"></column>
+            </div>
+        </div>
+        <div class="board board2">
+            <h2>募集金额</h2>
+            <div class="main">
+                <column :cols="collectAmount"></column>
+            </div>
+        </div>
+        <div class="board board3">
+            <h2>复投率</h2>
+            <div class="main">
+                <!--<column :class="colClass" :cols="cols3"></column>-->
+                <canvas id="pie-recast" width="400" height="300"></canvas>
+            </div>
+        </div>
     </div>
-    <div class="board">
-      <h2>募集金额</h2>
-      <div class="main">
-        <column :class="colClass"></column>
-        <canvas id="pie2" width="400" height="300"></canvas>
-      </div>
-    </div>
-    <div class="board">
-      <h2>复投率</h2>
-      <div class="main">
-        <column :class="colClass"></column>
-        <canvas id="pie3" width="400" height="300"></canvas>
-      </div>
+    <div class="row">
+        <div class="board">
+            <h2>总览</h2>
+            <div class="main">
+                <column :cols="statisticst"></column>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -51,115 +67,101 @@ canvas {
 
 <script>
 
+import axios from 'axios'
 import column from '@/components/Common/Column.vue'
 
 export default {
-    name: 'name',
+    name: 'index',
     data: () => {
         return {
-            meta: {
-                title: 'Index'
-            },
-            cols1: [{
-                lbl: '年度计划总募集项目量12',
-                val: '22'
-            }, {
-                lbl: '当前募集成功项目量',
-                val: '22'
-            }, {
-                lbl: '年度募集项目量达成率',
-                val: '22%'
-            }],
-            colClass:'index-col'
+          reCast: [],
+          collectProject:[],
+          collectAmount:[],
+          statisticst:[]
         }
     },
-    components:{
-      column
+    components: {
+        column
     },
-    mounted: () => {
-        //chart1
-        const pie1 = document.getElementById("pie1");
-        const myPie1Chart = new Chart(pie1, {
-            type: 'pie',
-            data: {
-                labels: [
-                    "Red",
-                    "Blue",
-                    "Yellow"
-                ],
-                datasets: [{
-                    data: [300, 50, 100],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
+    created: function() {
+
+        axios.get('dashBoard/collectProject.htm').then((response) => {
+            this.collectProject = [{
+                lbl: '年度计划总募集项目量',
+                val: response.data.data.targetCount
+            }, {
+                lbl: '当前募集成功项目量',
+                val: response.data.data.count
+            }, {
+                lbl: '年度募集项目量达成率',
+                val: response.data.data.rate
+            }]
+        })
+
+        axios.get('dashBoard/collectAmount.htm').then((response) => {
+          this.collectAmount = [{
+              lbl: '年度计划总募集金额',
+              val: response.data.data.targetAmount
+          }, {
+              lbl: '当前成功融资金额',
+              val: response.data.data.AMOUNT
+          }, {
+              lbl: '年度项目金额达成率',
+              val: response.data.data.rate
+          }]
+        })
+
+        axios.get('dashBoard/reCast.htm').then((response) => {
+            const pieRecast = document.getElementById("pie-recast");
+            const PieChart = new Chart(pieRecast, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        "当前复投率",
+                        "目标复投率"
                     ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-            },
-            options: {
-                responsive: false
-            }
-        });
-        //pie1
-        const pie2 = document.getElementById("pie2");
-        const myPie2Chart = new Chart(pie2, {
-            type: 'pie',
-            data: {
-                labels: [
-                    "Red",
-                    "Blue",
-                    "Yellow"
-                ],
-                datasets: [{
-                    data: [300, 50, 100],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-            },
-            options: {
-                responsive: false
-            }
-        });
-        const pie3 = document.getElementById("pie3");
-        const myPie3Chart = new Chart(pie3, {
-            type: 'pie',
-            data: {
-                labels: [
-                    "Red",
-                    "Blue",
-                    "Yellow"
-                ],
-                datasets: [{
-                    data: [300, 50, 100],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-            },
-            options: {
-                responsive: false
-            }
-        });
+                    datasets: [{
+                        data: [0, 10],
+                        backgroundColor: [
+                            "#FF6384",
+                            "#36A2EB"
+                        ],
+                        hoverBackgroundColor: [
+                            "#FF6384",
+                            "#36A2EB"
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: false
+                }
+            });
+        })
+
+        axios.get('dashBoard/statistics.htm').then((response) => {
+          this.statisticst = [{
+              lbl: '平台总众筹金额',
+              val: response.data.data.amount
+          }, {
+              lbl: '年度计划总募集项目量',
+              val: response.data.data.projectCount
+          }, {
+              lbl: '平台总投资人数',
+              val: response.data.data.investCount
+          }, {
+              lbl: '平台合格投资人数',
+              val: response.data.data.investAuthCount
+          }, {
+              lbl: '平台总实名人数',
+              val: response.data.data.realCount
+          }, {
+              lbl: '平台总注册人数',
+              val: response.data.data.signCount
+          }]
+        })
+    },
+    mounted: function() {
+        //console.info(this.data)
     }
 }
 

@@ -10,31 +10,45 @@
 <template>
 
 <div class="projects-wrapper">
-  <tablec></tablec>
+    <grid :theads="theads" :datalists="datalists"></grid>
 </div>
 
 </template>
 
 <script>
 
+import axios from 'axios'
 import Chart from 'chart.js'
-
-import tablec from '@/components/Common/Table.vue'
+import grid from '@/components/Common/Grid.vue'
 
 export default {
     name: 'index',
+    props: {},
     data: () => {
-      return {
-          theads: ['当月众筹项目（包含募集失败）','众筹项目状态','融资目标','已募集天数','项目完成比'],
-          datalists:[[1,2,3,4,5],[6,7,8,9,10]]
-      }
+        return {
+            theads: [{
+                key: '',
+                lbl: '当月众筹项目'
+            }, {
+                key: 'status',
+                lbl: '众筹项目状态'
+            }, {
+                key: 'proFinancieAmount',
+                lbl: '融资目标（￥）'
+            }, {
+                key: 'rate',
+                lbl: '项目完成比'
+            }],
+            datalists: []
+        }
     },
-    components:{
-      tablec
+    components: {
+        grid
     },
-    mounted: () => {
-
-
+    created () {
+        axios.get('dashBoard/proList.htm').then((response) => {
+            this.datalists = response.data.data
+        })
     }
 }
 
