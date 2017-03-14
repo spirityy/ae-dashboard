@@ -44,17 +44,11 @@
 export default {
     name: 'column',
     props: {
-       cols:Array 
+       cols:Array
     },
     data: () => {
         return {
         }
-    },
-    created () {
-        //console.info(this.data)
-    },
-    mounted: () => {
-        //console.info(this.data)
     }
 }
 

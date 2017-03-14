@@ -25,6 +25,9 @@
 .board3 {
     float: left;
     width: 26%;
+    canvas {
+        margin: 0 auto;
+    }
 }
 
 </style>
@@ -48,8 +51,7 @@
         <div class="board board3">
             <h2>复投率</h2>
             <div class="main">
-                <!--<column :class="colClass" :cols="cols3"></column>-->
-                <canvas id="pie-recast" width="400" height="300"></canvas>
+                <canvas id="pie-recast" width="300" height="260"></canvas>
             </div>
         </div>
     </div>
@@ -74,10 +76,10 @@ export default {
     name: 'index',
     data: () => {
         return {
-          reCast: [],
-          collectProject:[],
-          collectAmount:[],
-          statisticst:[]
+            reCast: {},
+            collectProject: [],
+            collectAmount: [],
+            statisticst: []
         }
     },
     components: {
@@ -99,29 +101,36 @@ export default {
         })
 
         axios.get('dashBoard/collectAmount.htm').then((response) => {
-          this.collectAmount = [{
-              lbl: '年度计划总募集金额',
-              val: response.data.data.targetAmount
-          }, {
-              lbl: '当前成功融资金额',
-              val: response.data.data.AMOUNT
-          }, {
-              lbl: '年度项目金额达成率',
-              val: response.data.data.rate
-          }]
+            this.collectAmount = [{
+                lbl: '年度计划总募集金额',
+                val: response.data.data.targetAmount
+            }, {
+                lbl: '当前成功融资金额',
+                val: response.data.data.AMOUNT
+            }, {
+                lbl: '年度项目金额达成率',
+                val: response.data.data.rate
+            }]
         })
 
         axios.get('dashBoard/reCast.htm').then((response) => {
+            const {
+                rate, targetRate
+            } = response.data.data
+            this.reCast = {
+                rate: parseInt(rate, 10),
+                targetRate: targetRate
+            }
             const pieRecast = document.getElementById("pie-recast");
             const PieChart = new Chart(pieRecast, {
                 type: 'pie',
                 data: {
                     labels: [
-                        "当前复投率",
-                        "目标复投率"
+                        '当前复投率'+this.reCast.rate+'%',
+                        '目标复投率'+this.reCast.targetRate+'%'
                     ],
                     datasets: [{
-                        data: [0, 10],
+                        data: [this.reCast.rate, this.reCast.targetRate],
                         backgroundColor: [
                             "#FF6384",
                             "#36A2EB"
@@ -135,29 +144,29 @@ export default {
                 options: {
                     responsive: false
                 }
-            });
+            })
         })
 
         axios.get('dashBoard/statistics.htm').then((response) => {
-          this.statisticst = [{
-              lbl: '平台总众筹金额',
-              val: response.data.data.amount
-          }, {
-              lbl: '年度计划总募集项目量',
-              val: response.data.data.projectCount
-          }, {
-              lbl: '平台总投资人数',
-              val: response.data.data.investCount
-          }, {
-              lbl: '平台合格投资人数',
-              val: response.data.data.investAuthCount
-          }, {
-              lbl: '平台总实名人数',
-              val: response.data.data.realCount
-          }, {
-              lbl: '平台总注册人数',
-              val: response.data.data.signCount
-          }]
+            this.statisticst = [{
+                lbl: '平台总众筹金额',
+                val: response.data.data.amount
+            }, {
+                lbl: '年度计划总募集项目量',
+                val: response.data.data.projectCount
+            }, {
+                lbl: '平台总投资人数',
+                val: response.data.data.investCount
+            }, {
+                lbl: '平台合格投资人数',
+                val: response.data.data.investAuthCount
+            }, {
+                lbl: '平台总实名人数',
+                val: response.data.data.realCount
+            }, {
+                lbl: '平台总注册人数',
+                val: response.data.data.signCount
+            }]
         })
     },
     mounted: function() {

@@ -48,7 +48,7 @@
     <tbody>
         <tr v-for="tr in datalists">
             <td v-for="th in theads">
-              {{tr[th.key]}}
+                {{tr[th.key]}}
             </td>
         </tr>
     </tbody>
@@ -59,13 +59,9 @@
 <script>
 
 export default {
-    props: {
-       datalists: Array,
-       theads: Array
-    },
+    props: ['datalists', 'theads'],
     data: () => {
-        return {
-        }
+        return {}
     }
 }
 

@@ -23,18 +23,17 @@ import grid from '@/components/Common/Grid.vue'
 
 export default {
     name: 'index',
-    props: {},
     data: () => {
         return {
             theads: [{
-                key: '',
+                key: 'proName',
                 lbl: '当月众筹项目'
             }, {
                 key: 'status',
                 lbl: '众筹项目状态'
             }, {
                 key: 'proFinancieAmount',
-                lbl: '融资目标（￥）'
+                lbl: '融资目标（万元）'
             }, {
                 key: 'rate',
                 lbl: '项目完成比'
@@ -45,7 +44,7 @@ export default {
     components: {
         grid
     },
-    created () {
+    created() {
         axios.get('dashBoard/proList.htm').then((response) => {
             this.datalists = response.data.data
         })
