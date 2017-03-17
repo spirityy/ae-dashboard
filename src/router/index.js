@@ -19,7 +19,7 @@ const router = new Router({
         path:'/overview',
         component:overview,
         meta:{
-          title:''
+          title:'AngelEase'
         }
       },
       {
@@ -37,6 +37,7 @@ const router = new Router({
         }
       },
       {
+        name:'project_detail',
         path:'/projects/:id',
         component:project,
         meta:{

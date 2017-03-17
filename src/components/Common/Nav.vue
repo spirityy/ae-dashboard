@@ -49,7 +49,7 @@ header {
           <router-link to="/home">{{ title }}</router-link>
       </h1>
         <div class="header-aciton">
-            <button type="button" name="button" v-on:click="back">button</button>
+            <button type="button" name="button" v-on:click="login">login</button>
         </div>
     </div>
 </header>
@@ -65,8 +65,8 @@ export default {
       }
     },
     methods: {
-        back: function() {
-            //router.go(-1)
+        login: function() {
+            console.info('login')
         }
     }
 }

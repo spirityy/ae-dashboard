@@ -5,12 +5,69 @@
     background-color: #fff;
 }
 
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    th,
+    td {
+        text-align: center;
+        font-size: 14px;
+    }
+    th {
+        color: #575757;
+    }
+    td {
+        text-align: center;
+        color: #7D7D7D;
+    }
+    thead {
+        height: 60px;
+        line-height: 60px;
+    }
+    tbody {
+        td {
+            height: 40px;
+            line-height: 40px;
+            b {
+                color: #090909;
+            }
+            a{
+                color: #090909;
+                text-decoration: underline;
+            }
+        }
+        tr:nth-child(odd) {
+            background-color: #F6F6F6;
+        }
+    }
+}
+
 </style>
 
 <template>
 
 <div class="projects-wrapper">
-    <grid :theads="theads" :datalists="datalists"></grid>
+    <table class="table">
+        <thead>
+            <tr>
+                <th v-for="th in theads">
+                    {{ th.lbl }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="tr in datalists">
+                <td>
+                    <router-link :to="{ name: 'project_detail', params: { id:tr.id }}">
+                        {{ tr.proName }}
+                    </router-link>
+                </td>
+                <td>{{tr.status}}</td>
+                <td>{{tr.proFinancieAmount}}万元</td>
+                <td>{{tr.rate}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 </template>
@@ -19,30 +76,22 @@
 
 import axios from 'axios'
 import Chart from 'chart.js'
-import grid from '@/components/Common/Grid.vue'
 
 export default {
     name: 'index',
     data: () => {
         return {
             theads: [{
-                key: 'proName',
                 lbl: '当月众筹项目'
             }, {
-                key: 'status',
                 lbl: '众筹项目状态'
             }, {
-                key: 'proFinancieAmount',
-                lbl: '融资目标（万元）'
+                lbl: '融资目标（￥）'
             }, {
-                key: 'rate',
                 lbl: '项目完成比'
             }],
             datalists: []
         }
-    },
-    components: {
-        grid
     },
     created() {
         axios.get('dashBoard/proList.htm').then((response) => {
