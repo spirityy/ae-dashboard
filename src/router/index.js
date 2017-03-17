@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import index from '@/components/Index/Index.vue'
+import overview from '@/components/Overview/Overview.vue'
 import projects from '@/components/Project/Projects.vue'
 import project from '@/components/Project/ProjectDetail.vue'
 import mobileapp from '@/components/MobileApp/MobileApp.vue'
@@ -13,11 +13,11 @@ const router = new Router({
   routes:[
       {
         path: '/',
-        redirect: '/home'
+        redirect: '/overview'
       },
       {
-        path:'/home',
-        component:index,
+        path:'/overview',
+        component:overview,
         meta:{
           title:''
         }

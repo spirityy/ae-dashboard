@@ -14,11 +14,26 @@
             line-height: 60px;
             margin: 10px 0;
             a {
-                font-size: 16px;
+                font-size: 18px;
                 color: #ADADAD;
+                span{
+                  vertical-align: middle;
+                }
+                i.icon{
+                  display: inline-block;
+                  width: 20px;
+                  text-align: center;
+                  font-size: 22px;
+                  color: #ADADAD;
+                  margin-right: 10px;
+                  vertical-align: middle;
+                }
                 &:hover,
                 &.active {
                     color: #343434;
+                    i.icon{
+                      color: #343434;
+                    }
                 }
             }
         }
@@ -31,13 +46,13 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <router-link to="/home">HOME</router-link>
+                    <router-link to="/overview"><i class="icon ion-monitor"></i><span>Overview</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/projects">PROJECT</router-link>
+                    <router-link to="/projects"><i class="icon ion-ios-folder-outline"></i><span>Projects</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/mobileapp">MOBILEAPP</router-link>
+                    <router-link to="/mobileapp"><i class="icon ion-iphone"></i><span>MobileApp</span></router-link>
                 </li>
             </ul>
         </div>
@@ -46,7 +61,6 @@
 <script>
 
 export default {
-
 
 }
 
