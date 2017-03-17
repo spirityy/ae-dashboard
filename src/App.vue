@@ -1,7 +1,8 @@
 <style lang="scss">
 
-@import "./assets/sass/functions";
 @import "./assets/sass/reset";
+@import "./assets/sass/functions";
+
 body {
     background-color: #F3F7F9;
     color: #C1C1C1;
@@ -13,71 +14,10 @@ body {
     font-weight: 500;
 }
 
-header {
-    width: 100%;
-    height: 80px;
-    line-height: 80px;
-    .logo {
-        display: inline-block;
-        width: 15%;
-        background-color: #314D64;
-        border-right: 1px solid #314D64;
-        font-weight: 600;
-        font-size: 22px;
-        text-align: center;
-        a {
-            color: #fff;
-        }
-    }
-    .wrapper {
-        background-color: #fff;
-        border-bottom: 1px solid #EDEDEF;
-        width: 85%;
-        height: 80px;
-        margin: 0 auto;
-        .header-aciton {
-            float: right;
-            button {
-                cursor: pointer;
-                margin-right: 20px;
-                background-color: #fff;
-                height: 50px;
-                padding: 0 20px;
-                border: 1px solid #ededef;
-                @include border-radius(20px);
-            }
-        }
-    }
-}
-
 .bd {
     @include clearfix();
     width: 85%;
     margin: 0 auto;
-    .sidebar {
-        float: left;
-        width: 15%;
-        height: 800px;
-        background-color: #fff;
-        border-right: 1px solid #EDEDEF;
-        ul {
-            margin-top: 100px;
-            li {
-                padding: 0 20% 0 30%;
-                height: 60px;
-                line-height: 60px;
-                margin: 10px 0;
-                a {
-                    font-size: 16px;
-                    color: #ADADAD;
-                    &:hover,
-                    &.active {
-                        color: #343434;
-                    }
-                }
-            }
-        }
-    }
     .content {
         float: left;
         @include calc('width', '85% - 31px');
@@ -121,30 +61,9 @@ header {
 <template>
 
 <div id="app">
-    <header>
-        <div class="wrapper">
-            <h1 class="logo">
-            <router-link to="/home">{{ title }}</router-link>
-        </h1>
-            <div class="header-aciton">
-                <button type="button" name="button" v-on:click="back">button</button>
-            </div>
-        </div>
-    </header>
+    <common-nav></common-nav>
     <div class="bd">
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <router-link to="/home">HOME</router-link>
-                </li>
-                <li>
-                    <router-link to="/projects">PROJECT</router-link>
-                </li>
-                <li>
-                    <router-link to="/mobileapp">MOBILEAPP</router-link>
-                </li>
-            </ul>
-        </div>
+        <common-sidebar></common-sidebar>
         <div class="content">
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
@@ -158,18 +77,14 @@ header {
 <script>
 
 import router from 'vue-router'
+import commonNav from '@/components/Common/Nav.vue'
+import commonSidebar from '@/components/Common/Sidebar.vue'
 
 export default {
     name: 'app',
-    data() {
-        return {
-            title: 'AngelEase'
-        }
-    },
-    methods: {
-        back: function() {
-            //router.go(-1)
-        }
+    components:{
+      'common-nav':commonNav,
+      'common-sidebar':commonSidebar
     }
 }
 
