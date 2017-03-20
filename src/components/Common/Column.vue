@@ -7,14 +7,14 @@
         li {
             text-align: left;
             float: left;
-            padding: 0 3%;
+            padding: 0 2%;
             .lbl {
                 color: #C1C1C1;
-                font-size: 16px;
+                font-size: 0.7vw;
             }
             .val {
                 color: #323232;
-                font-size: 28px;
+                font-size: 1.2vw;
                 font-weight: bold;
             }
         }

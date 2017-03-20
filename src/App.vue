@@ -2,7 +2,6 @@
 
 @import "./assets/sass/reset";
 @import "./assets/sass/functions";
-
 body {
     background-color: #F3F7F9;
     color: #C1C1C1;
@@ -41,19 +40,20 @@ body {
 
 //board common style
 .board {
-  background-color: #fff;
-  margin-bottom: 2%;
-  h2{
-    height: 80px;
-    line-height: 80px;
-    border-bottom: 1px solid #E8EDEF;
-    padding-left: 25px;
-    text-align: left;
-  }
-  .main{
-    @include clearfix();
-    padding: 4%;
-  }
+    background-color: #fff;
+    margin-bottom: 2%;
+    h2 {
+        font-size: 0.8vw;
+        height: 80px;
+        line-height: 80px;
+        border-bottom: 1px solid #E8EDEF;
+        padding-left: 25px;
+        text-align: left;
+    }
+    .main {
+        @include clearfix();
+        padding: 4%;
+    }
 }
 
 </style>
@@ -82,9 +82,9 @@ import commonSidebar from '@/components/Common/Sidebar.vue'
 
 export default {
     name: 'app',
-    components:{
-      'common-nav':commonNav,
-      'common-sidebar':commonSidebar
+    components: {
+        'common-nav': commonNav,
+        'common-sidebar': commonSidebar
     }
 }
 

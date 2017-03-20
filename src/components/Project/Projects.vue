@@ -32,7 +32,7 @@
                 color: #090909;
             }
             a{
-                color: #090909;
+                color: #314D64;
                 text-decoration: underline;
             }
         }

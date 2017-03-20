@@ -26,7 +26,12 @@
     float: left;
     width: 26%;
     canvas {
+        width:80%;
         margin: 0 auto;
+    }
+
+    .main{
+      padding: 5% 20%;
     }
 }
 
@@ -48,10 +53,10 @@
                 <column :cols="collectAmount"></column>
             </div>
         </div>
-        <div class="board board3">
+        <div class="board board3 recast-board">
             <h2>复投率</h2>
             <div class="main">
-                <canvas id="pie-recast" width="300" height="260"></canvas>
+                <canvas id="pie-recast"></canvas>
             </div>
         </div>
     </div>
@@ -89,13 +94,13 @@ export default {
 
         axios.get('dashBoard/collectProject.htm').then((response) => {
             this.collectProject = [{
-                lbl: '年度计划总募集项目量',
+                lbl: '年度计划总项目量',
                 val: response.data.data.targetCount
             }, {
-                lbl: '当前募集成功项目量',
+                lbl: '当前成功项目量',
                 val: response.data.data.count
             }, {
-                lbl: '年度募集项目量达成率',
+                lbl: '年度项目量达成率',
                 val: response.data.data.rate
             }]
         })
@@ -142,7 +147,7 @@ export default {
                     }]
                 },
                 options: {
-                    responsive: false
+                    responsive: true
                 }
             })
         })

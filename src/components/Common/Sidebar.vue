@@ -3,29 +3,30 @@
 .sidebar {
     float: left;
     width: 15%;
-    height: 800px;
+    min-height: 800px;
     background-color: #fff;
     border-right: 1px solid #EDEDEF;
     ul {
         margin-top: 100px;
         li {
-            padding: 0 20% 0 30%;
+            padding: 0 15% 0 30%;
+            width: 55%;
             height: 60px;
             line-height: 60px;
             margin: 10px 0;
             a {
-                font-size: 18px;
+                font-size: 0.8vw;
                 color: #ADADAD;
                 span{
                   vertical-align: middle;
                 }
                 i.icon{
                   display: inline-block;
-                  width: 20px;
+                  width: 16%;
                   text-align: center;
-                  font-size: 22px;
+                  font-size: 1vw;
                   color: #ADADAD;
-                  margin-right: 10px;
+                  margin-right: 2%;
                   vertical-align: middle;
                 }
                 &:hover,

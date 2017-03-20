@@ -4,8 +4,8 @@
 
 header {
     width: 100%;
-    height: 80px;
-    line-height: 80px;
+    height: 70px;
+    line-height: 70px;
     .logo {
         display: inline-block;
         width: 15%;
@@ -19,13 +19,36 @@ header {
         }
     }
     .wrapper {
+        position: relative;
         background-color: #fff;
         border-bottom: 1px solid #EDEDEF;
         width: 85%;
-        height: 80px;
+        height: 70px;
         margin: 0 auto;
         .header-aciton {
             float: right;
+            .search-wrapper{
+              position: relative;
+            }
+            .dashborard-search{
+              display: inline-block;
+              position: absolute;
+              border: 1px solid #EDEDEF;
+              @include border-radius(20px);
+              right: 30px;
+              top:20px;
+              width: 200px;
+              height: 30px;
+              padding: 0 20px 0 38px;
+            }
+            .ion-ios-search{
+              display: inline-block;
+              position: absolute;
+              right: 200px;
+              top:0px;
+              height: 20px;
+              font-size: 20px;
+            }
             button {
                 cursor: pointer;
                 margin-right: 20px;
@@ -46,10 +69,14 @@ header {
 <header>
     <div class="wrapper">
         <h1 class="logo">
-          <router-link to="/home">{{ title }}</router-link>
+          <router-link to="/">{{ title }}</router-link>
       </h1>
         <div class="header-aciton">
-            <button type="button" name="button" v-on:click="login">login</button>
+            <!--<button type="button" name="button" v-on:click="login">login</button>-->
+            <div class="search-wrapper">
+              <input type="search" class="dashborard-search" name="" value="" v-on:keyup.enter="search">
+              <i class="icon ion-ios-search"></i>
+            </div>
         </div>
     </div>
 </header>
@@ -65,8 +92,8 @@ export default {
       }
     },
     methods: {
-        login: function() {
-            console.info('login')
+        search: function() {
+            alert('暂未开通...')
         }
     }
 }
