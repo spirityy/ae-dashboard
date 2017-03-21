@@ -18,7 +18,7 @@
 
 .project-detail {
     .pro-name {
-        font-size: 0.9vw;
+        font-size: 1vw;
         font-weight: bold;
     }
     h2 > span {
@@ -92,9 +92,7 @@ export default {
             }
         }).then((response) => {
             //set Title
-            document.title = this.proName
-
-            this.proName = response.data.data.proName
+            this.proName = document.title= response.data.data.proName
             this.id = response.data.data.id
 
             this.ProjectBase = [{
@@ -130,7 +128,7 @@ export default {
                 val: response.data.data.refundCount
             }, {
                 lbl: '下单成功比例',
-                val: response.data.data.rate
+                val: response.data.data.OrderRate
             }]
 
         })

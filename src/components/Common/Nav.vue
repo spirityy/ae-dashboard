@@ -28,6 +28,12 @@ header {
             float: right;
             .search-wrapper {
                 position: relative;
+                margin-right: 180px;
+            }
+            .time-wrapper {
+                text-align: center;
+                font-size: 0.9vw;
+                color: #343434;
             }
             .dashborard-search {
                 display: inline-block;
@@ -76,6 +82,10 @@ header {
                 <input type="search" class="dashborard-search" name="" value="" v-on:keyup.enter="search">
                 <i class="icon ion-ios-search"></i>
             </div>
+            <div class="time-wrapper">
+                <i class="ion-android-time icon"></i>
+                <span id="timer" class="time-val">{{ time }}</span>
+            </div>
         </div>
     </div>
 </header>
@@ -84,16 +94,25 @@ header {
 
 <script>
 
+import moment from 'moment'
+
 export default {
     data: function() {
         return {
-            title: 'AngelEase'
+            title: 'AngelEase',
+            time: ''
         }
     },
     methods: {
         search: function() {
             alert('暂未开通...')
         }
+    },
+    created() {
+        var _this = this
+        setInterval(function() {
+            _this.time = new moment().format("HH:mm:ss")
+        }, 1000)
     }
 }
 

@@ -39,10 +39,7 @@ const router = new Router({
       {
         name:'project_detail',
         path:'/projects/:id',
-        component:project,
-        meta:{
-          title:'Project Detail'
-        }
+        component:project
       }
   ]
 })

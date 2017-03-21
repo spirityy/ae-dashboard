@@ -14,7 +14,7 @@
             }
             .val {
                 color: #323232;
-                font-size: 1.2vw;
+                font-size: 1vw;
                 font-weight: bold;
             }
         }
