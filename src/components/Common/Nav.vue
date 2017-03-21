@@ -1,7 +1,6 @@
 <style lang="scss">
 
 @import "../../assets/sass/functions";
-
 header {
     width: 100%;
     height: 70px;
@@ -27,27 +26,27 @@ header {
         margin: 0 auto;
         .header-aciton {
             float: right;
-            .search-wrapper{
-              position: relative;
+            .search-wrapper {
+                position: relative;
             }
-            .dashborard-search{
-              display: inline-block;
-              position: absolute;
-              border: 1px solid #EDEDEF;
-              @include border-radius(20px);
-              right: 30px;
-              top:20px;
-              width: 200px;
-              height: 30px;
-              padding: 0 20px 0 38px;
+            .dashborard-search {
+                display: inline-block;
+                position: absolute;
+                border: 1px solid #EDEDEF;
+                @include border-radius(20px);
+                right: 30px;
+                top: 20px;
+                width: 200px;
+                height: 30px;
+                padding: 0 20px 0 38px;
             }
-            .ion-ios-search{
-              display: inline-block;
-              position: absolute;
-              right: 200px;
-              top:0px;
-              height: 20px;
-              font-size: 20px;
+            .ion-ios-search {
+                display: inline-block;
+                position: absolute;
+                right: 200px;
+                top: 0px;
+                height: 20px;
+                font-size: 20px;
             }
             button {
                 cursor: pointer;
@@ -74,8 +73,8 @@ header {
         <div class="header-aciton">
             <!--<button type="button" name="button" v-on:click="login">login</button>-->
             <div class="search-wrapper">
-              <input type="search" class="dashborard-search" name="" value="" v-on:keyup.enter="search">
-              <i class="icon ion-ios-search"></i>
+                <input type="search" class="dashborard-search" name="" value="" v-on:keyup.enter="search">
+                <i class="icon ion-ios-search"></i>
             </div>
         </div>
     </div>
@@ -86,10 +85,10 @@ header {
 <script>
 
 export default {
-    data: function(){
-      return {
-        title: 'AngelEase'
-      }
+    data: function() {
+        return {
+            title: 'AngelEase'
+        }
     },
     methods: {
         search: function() {

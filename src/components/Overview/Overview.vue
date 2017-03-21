@@ -31,7 +31,7 @@
     }
 
     .main{
-      padding: 5% 20%;
+      padding: 5% 15%;
     }
 }
 
