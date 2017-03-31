@@ -17,23 +17,23 @@
             a {
                 font-size: 0.8vw;
                 color: #ADADAD;
-                span{
-                  vertical-align: middle;
+                span {
+                    vertical-align: middle;
                 }
-                i.icon{
-                  display: inline-block;
-                  width: 16%;
-                  text-align: center;
-                  font-size: 1vw;
-                  color: #ADADAD;
-                  margin-right: 2%;
-                  vertical-align: middle;
+                i.icon {
+                    display: inline-block;
+                    width: 16%;
+                    text-align: center;
+                    font-size: 1vw;
+                    color: #ADADAD;
+                    margin-right: 2%;
+                    vertical-align: middle;
                 }
                 &:hover,
                 &.active {
                     color: #343434;
-                    i.icon{
-                      color: #343434;
+                    i.icon {
+                        color: #343434;
                     }
                 }
             }
@@ -44,25 +44,40 @@
 </style>
 
 <template lang="html">
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <router-link to="/overview"><i class="icon ion-monitor"></i><span>Overview</span></router-link>
-                </li>
-                <li>
-                    <router-link to="/projects"><i class="icon ion-ios-folder-outline"></i><span>Projects</span></router-link>
-                </li>
-                <li>
-                    <router-link to="/mobileapp"><i class="icon ion-iphone"></i><span>MobileApp</span></router-link>
-                </li>
-            </ul>
-        </div>
+
+<div class="sidebar">
+    <ul>
+        <li>
+            <router-link to="/overview"><i class="icon ion-monitor"></i><span>Overview</span></router-link>
+        </li>
+        <li>
+            <router-link to="/projects"><i class="icon ion-ios-folder-outline"></i><span>Projects</span></router-link>
+        </li>
+        <li>
+            <router-link to="/mobileapp"><i class="icon ion-iphone"></i><span>MobileApp</span></router-link>
+        </li>
+    </ul>
+</div>
+
 </template>
 
 <script>
 
-export default {
+import $ from 'jquery'
 
+export default {
+    data: function() {
+        return {}
+    },
+    created() {
+        let _this = this
+        let side_index = 0
+        setInterval(function() {
+            $('.sidebar li a')[side_index].click()
+            side_index++
+            if (side_index === $('.sidebar li a').length) side_index = 0
+        }, 5000)
+    }
 }
 
 </script>
