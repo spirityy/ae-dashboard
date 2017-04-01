@@ -64,19 +64,33 @@
 <script>
 
 import $ from 'jquery'
+import store from '../store.js'
+import bus from '../bus.js'
 
 export default {
     data: function() {
-        return {}
+        return {
+            autoplay: {}
+        }
     },
     created() {
-        let _this = this
-        let side_index = 0
-        setInterval(function() {
-            $('.sidebar li a')[side_index].click()
-            side_index++
-            if (side_index === $('.sidebar li a').length) side_index = 0
-        }, 5000)
+        bus.$on('setAutoplay', this.setAutoplay)
+        bus.$on('clearAutoplay', this.clearAutoplay)
+    },
+    methods: {
+      setAutoplay() {
+          let _this = this
+          let side_index = 0
+          this.autoplay = setInterval(function() {
+              $('.sidebar li a')[side_index].click()
+              side_index++
+              if (side_index === $('.sidebar li a').length) side_index = 0
+          }, store.state.timeInterval)
+      },
+      clearAutoplay() {
+          clearInterval(this.autoplay);
+          store.state.autoplay = false
+      }
     }
 }
 

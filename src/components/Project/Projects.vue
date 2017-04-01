@@ -31,7 +31,7 @@
             b {
                 color: #090909;
             }
-            a{
+            a {
                 color: #314D64;
                 text-decoration: underline;
             }
@@ -77,6 +77,11 @@
 import axios from 'axios'
 import Chart from 'chart.js'
 
+import store from '../store.js'
+import bus from '../bus.js'
+
+import $ from 'jquery'
+
 export default {
     name: 'index',
     data: () => {
@@ -97,7 +102,12 @@ export default {
         axios.get('dashBoard/proList.htm').then((response) => {
             this.datalists = response.data.data
         })
+    },
+    mounted() {
+      console.info()
+
     }
+
 }
 
 </script>

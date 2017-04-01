@@ -27,10 +27,18 @@ header {
         .header-aciton {
             float: right;
             .search-wrapper {
+                display: inline-block;
                 position: relative;
                 margin-right: 180px;
             }
+            .autoplay-wrapper {
+                display: inline-block;
+                position: relative;
+                margin-right: 20px;
+            }
             .time-wrapper {
+                display: inline-block;
+                width: 200px;
                 text-align: center;
                 font-size: 0.9vw;
                 color: #343434;
@@ -78,9 +86,13 @@ header {
       </h1>
         <div class="header-aciton">
             <!--<button type="button" name="button" v-on:click="login">login</button>-->
-            <div class="search-wrapper">
+            <!--<div class="search-wrapper">
                 <input type="search" class="dashborard-search" name="" value="" v-on:keyup.enter="search">
                 <i class="icon ion-ios-search"></i>
+            </div>-->
+            <div class="autoplay-wrapper">
+                <label for="autoplay">AutoPlay</label>
+                <input type="checkbox" name="autoplay" id="autoplay" v-model="autoplay" @click="autoplayToggle">
             </div>
             <div class="time-wrapper">
                 <i class="ion-android-time icon"></i>
@@ -95,6 +107,8 @@ header {
 <script>
 
 import moment from 'moment'
+import store from '../store.js'
+import bus from '../bus.js'
 
 export default {
     data: function() {
@@ -104,15 +118,30 @@ export default {
         }
     },
     methods: {
-        search: function() {
-            alert('暂未开通...')
-        }
+        search() {
+                alert('暂未开通...')
+            },
+            autoplayToggle() {
+                store.state.autoplay = this.autoplay
+                if (store.state.autoplay) {
+                    bus.$emit('setAutoplay')
+                } else {
+                    bus.$emit('clearAutoplay')
+                }
+
+            }
     },
     created() {
+        //set nav timer
         var _this = this
         setInterval(function() {
             _this.time = new moment().format("HH:mm:ss")
         }, 1000)
+    },
+    mounted(){
+        //init autoplay
+        store.state.autoplay = this.autoplay = true
+        bus.$emit('setAutoplay')
     }
 }
 
