@@ -78,19 +78,22 @@ export default {
         bus.$on('clearAutoplay', this.clearAutoplay)
     },
     methods: {
-      setAutoplay() {
-          let _this = this
-          let side_index = 0
-          this.autoplay = setInterval(function() {
-              $('.sidebar li a')[side_index].click()
-              side_index++
-              if (side_index === $('.sidebar li a').length) side_index = 0
-          }, store.state.timeInterval)
-      },
-      clearAutoplay() {
-          clearInterval(this.autoplay);
-          store.state.autoplay = false
-      }
+        setAutoplay() {
+                let _this = this
+                let autoplay_index = 0
+                $('.sidebar li a').each(function(k, v) {
+                    store.state.autoplayList.push($(v).attr('href'))
+                })
+                this.autoplay = setInterval(function() {
+                    location.href = store.state.autoplayList[autoplay_index]
+                    autoplay_index++
+                    if (autoplay_index === store.state.autoplayList.length) autoplay_index = 0
+                }, store.state.timeInterval)
+            },
+            clearAutoplay() {
+                clearInterval(this.autoplay);
+                store.state.autoplay = false
+            }
     }
 }
 

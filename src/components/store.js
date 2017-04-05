@@ -1,9 +1,9 @@
 var store = {
   debug: true,
   state: {
-    timeInterval:3000,
-    autoplay: '',
-    playproduct:''
+    timeInterval:8000,
+    autoplay: true,
+    autoplayList:[]
   }
 }
 
