@@ -53,9 +53,9 @@
         <li>
             <router-link to="/projects"><i class="icon ion-ios-folder-outline"></i><span>Projects</span></router-link>
         </li>
-        <li>
+        <!--<li>
             <router-link to="/mobileapp"><i class="icon ion-iphone"></i><span>MobileApp</span></router-link>
-        </li>
+        </li>-->
     </ul>
 </div>
 
@@ -85,9 +85,10 @@ export default {
                     store.state.autoplayList.push($(v).attr('href'))
                 })
                 this.autoplay = setInterval(function() {
+                    if (autoplay_index === store.state.autoplayList.length) autoplay_index = 0
                     location.href = store.state.autoplayList[autoplay_index]
                     autoplay_index++
-                    if (autoplay_index === store.state.autoplayList.length) autoplay_index = 0
+                    //console.info(store.state.autoplayList.length,autoplay_index)
                 }, store.state.timeInterval)
             },
             clearAutoplay() {
