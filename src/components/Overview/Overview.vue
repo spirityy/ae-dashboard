@@ -192,7 +192,7 @@ export default {
         axios.get('dashBoard/statistics.htm').then((response) => {
             this.statisticst = [{
                 lbl: '平台总众筹金额',
-                val: response.data.data.amount
+                val: response.data.data.amount+'万元'
             }, {
                 lbl: '年度计划总募集项目量',
                 val: response.data.data.projectCount

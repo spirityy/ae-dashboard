@@ -79,22 +79,22 @@ export default {
     },
     methods: {
         setAutoplay() {
-                let _this = this
-                let autoplay_index = 0
-                $('.sidebar li a').each(function(k, v) {
-                    store.state.autoplayList.push($(v).attr('href'))
-                })
-                this.autoplay = setInterval(function() {
-                    if (autoplay_index === store.state.autoplayList.length) autoplay_index = 0
-                    location.href = store.state.autoplayList[autoplay_index]
-                    autoplay_index++
-                    //console.info(store.state.autoplayList.length,autoplay_index)
-                }, store.state.timeInterval)
-            },
-            clearAutoplay() {
-                clearInterval(this.autoplay);
-                store.state.autoplay = false
-            }
+              let _this = this
+              let autoplay_index = 0
+              $('.sidebar li a').each(function(k, v) {
+                  store.state.autoplayList.push($(v).attr('href'))
+              })
+              this.autoplay = setInterval(function() {
+                  if (autoplay_index === store.state.autoplayList.length) autoplay_index = 0
+                  location.href = store.state.autoplayList[autoplay_index]
+                  autoplay_index++
+                  //console.info(store.state.autoplayList, autoplay_index)
+              }, store.state.timeInterval)
+          },
+          clearAutoplay() {
+              clearInterval(this.autoplay);
+              store.state.autoplay = false
+          }
     }
 }
 

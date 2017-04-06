@@ -108,10 +108,10 @@ export default {
 
             this.ProjectAmount = [{
                 lbl: '支付成功总金额',
-                val: response.data.data.amount
+                val: response.data.data.amount+'万元'
             }, {
                 lbl: '已退款金额',
-                val: response.data.data.refund
+                val: response.data.data.refund+'万元'
             }]
 
             this.ProjectPeople = [{

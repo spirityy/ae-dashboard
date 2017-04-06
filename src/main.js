@@ -6,7 +6,16 @@ import router from './router'
 import axios from 'axios'
 
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://10.36.106.76:8080/rest/'
+
+//test
+axios.defaults.baseURL = 'http://10.36.106.85:8991/rest/'
+//uat
+//axios.defaults.baseURL = 'https://uat-angelease.yixin.com/rest/'
+//prodoct
+//axios.defaults.baseURL = 'https://www.angelease.cn/rest/'
+
+axios.defaults.params = { privateSign:'1qaz2wsxqq' }
+
 axios.defaults.withCredentials = false
 
 /* eslint-disable no-new */

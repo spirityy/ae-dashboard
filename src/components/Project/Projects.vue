@@ -102,11 +102,14 @@ export default {
         axios.get('dashBoard/proList.htm').then((response) => {
             this.datalists = response.data.data
             response.data.data.forEach((item) => {
-              if(!store.state.autoplayList.includes('#/projects/'+item.id)) store.state.autoplayList.push('#/projects/'+item.id)
+                if (!store.state.autoplayList.includes('#/projects/' + item.id)) {
+                    store.state.autoplayList.push('#/projects/' + item.id)
+                    store.state.autoplayList.push('#/projects')
+                }
             })
         })
     },
-    mounted() { }
+    mounted() {}
 }
 
 </script>
