@@ -8,9 +8,9 @@ import axios from 'axios'
 Vue.config.productionTip = false
 
 //test
-axios.defaults.baseURL = 'http://10.36.106.85:8991/rest/'
+//axios.defaults.baseURL = 'http://10.36.106.85:8991/rest/'
 //uat
-//axios.defaults.baseURL = 'https://uat-angelease.yixin.com/rest/'
+axios.defaults.baseURL = 'https://uat-angelease.yixin.com/rest/'
 //prodoct
 //axios.defaults.baseURL = 'https://www.angelease.cn/rest/'
 
