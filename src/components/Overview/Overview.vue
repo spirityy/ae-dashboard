@@ -194,7 +194,7 @@ export default {
                 lbl: '平台总众筹金额',
                 val: response.data.data.amount+'万元'
             }, {
-                lbl: '年度计划总募集项目量',
+                lbl: '平台总众筹项目数',
                 val: response.data.data.projectCount
             }, {
                 lbl: '平台总投资人数',
