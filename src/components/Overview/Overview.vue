@@ -70,7 +70,7 @@
         </div>
         <div class="board overview-top">
             <div class="lbl">
-                平台总众筹金额(万元)
+                平台总众筹项目数
             </div>
             <div class="val">
                 {{projects_num}}
