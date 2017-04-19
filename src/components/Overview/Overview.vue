@@ -27,9 +27,30 @@
     width: 32%;
 }
 
-.board1,.board2,.board3 {
+.board1,
+.board2,
+.board3 {
     .main {
         padding: 5% 15%;
+    }
+}
+
+.overview-top {
+    float: left;
+    width: 39%;
+    text-align: center;
+    padding: 2% 5%;
+    .lbl {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    .val {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4A4544;
+    }
+    &:first-child {
+        margin-right: 2%;
     }
 }
 
@@ -39,8 +60,26 @@
 
 <div class="index-wrapper">
     <div class="row">
+        <div class="board overview-top">
+            <div class="lbl">
+                平台总众筹金额(万元)
+            </div>
+            <div class="val">
+                {{total_amount}}
+            </div>
+        </div>
+        <div class="board overview-top">
+            <div class="lbl">
+                平台总众筹金额(万元)
+            </div>
+            <div class="val">
+                {{projects_num}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="board">
-            <h2>总览</h2>
+            <h2>用户</h2>
             <div class="main">
                 <column :cols="statisticst"></column>
             </div>
@@ -48,16 +87,14 @@
     </div>
     <div class="row">
         <div class="board board1">
-            <h2>募集项目</h2>
+            <h2>募集项目完成比</h2>
             <div class="main">
-                <!--<column :cols="collectProject"></column>-->
                 <canvas id="pie-collecatproject"></canvas>
             </div>
         </div>
         <div class="board board2">
-            <h2>募集金额</h2>
+            <h2>募集金额完成比</h2>
             <div class="main">
-                <!--<column :cols="collectAmount"></column>-->
                 <canvas id="pie-collectamount"></canvas>
             </div>
         </div>
@@ -84,7 +121,9 @@ export default {
             reCast: {},
             collectProject: [],
             collectAmount: [],
-            statisticst: []
+            person_statisticst: [],
+            total_amount: '',
+            projects_num: '',
         }
     },
     components: {
@@ -98,8 +137,8 @@ export default {
                 type: 'pie',
                 data: {
                     labels: [
-                        '当前成功项目量(' + response.data.data.count+'个)',
-                        '年度计划总项目量(' + response.data.data.targetCount+'个)'
+                        '当前成功项目量(' + response.data.data.count + '个)',
+                        '年度计划总项目量(' + response.data.data.targetCount + '个)'
                     ],
                     datasets: [{
                         data: [response.data.data.count, response.data.data.targetCount],
@@ -129,8 +168,8 @@ export default {
                 type: 'pie',
                 data: {
                     labels: [
-                        '当前成功融资金额(' + response.data.data.AMOUNT+'万元)',
-                        '年度计划总募集金额(' + response.data.data.targetAmount+'万元)'
+                        '当前成功融资金额(' + response.data.data.AMOUNT + '万元)',
+                        '年度计划总募集金额(' + response.data.data.targetAmount + '万元)'
                     ],
                     datasets: [{
                         data: [response.data.data.AMOUNT, response.data.data.targetAmount],
@@ -190,13 +229,9 @@ export default {
         })
 
         axios.get('dashBoard/statistics.htm').then((response) => {
+            this.total_amount = response.data.data.amount
+            this.projects_num = response.data.data.projectCount
             this.statisticst = [{
-                lbl: '平台总众筹金额',
-                val: response.data.data.amount+'万元'
-            }, {
-                lbl: '平台总众筹项目数',
-                val: response.data.data.projectCount
-            }, {
                 lbl: '平台总投资人数',
                 val: response.data.data.investCount
             }, {

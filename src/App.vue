@@ -44,8 +44,8 @@ body {
     margin-bottom: 2%;
     h2 {
         font-size: 0.8vw;
-        height: 80px;
-        line-height: 80px;
+        height: 70px;
+        line-height: 70px;
         border-bottom: 1px solid #E8EDEF;
         padding-left: 25px;
         text-align: left;
