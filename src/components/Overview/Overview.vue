@@ -79,7 +79,7 @@
     </div>
     <div class="row">
         <div class="board">
-            <h2>用户</h2>
+            <h2>平台用户统计</h2>
             <div class="main">
                 <column :cols="statisticst"></column>
             </div>
@@ -87,19 +87,19 @@
     </div>
     <div class="row">
         <div class="board board1">
-            <h2>募集项目完成比</h2>
+            <h2>本年度募集项目完成比</h2>
             <div class="main">
                 <canvas id="pie-collecatproject"></canvas>
             </div>
         </div>
         <div class="board board2">
-            <h2>募集金额完成比</h2>
+            <h2>本年度募集金额完成比</h2>
             <div class="main">
                 <canvas id="pie-collectamount"></canvas>
             </div>
         </div>
         <div class="board board3 recast-board">
-            <h2>复投率</h2>
+            <h2>本年度复投率</h2>
             <div class="main">
                 <canvas id="pie-recast"></canvas>
             </div>
@@ -247,7 +247,6 @@ export default {
         })
     },
     mounted: function() {
-        //console.info(this.data)
     }
 }
 
