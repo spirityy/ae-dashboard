@@ -47,7 +47,7 @@ body {
         height: 70px;
         line-height: 70px;
         border-bottom: 1px solid #E8EDEF;
-        padding-left: 25px;
+        padding: 0 25px;
         text-align: left;
     }
     .main {

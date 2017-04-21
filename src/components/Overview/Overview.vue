@@ -54,6 +54,13 @@
     }
 }
 
+h2 > .rate {
+    float: right;
+    color:  #BA6A5D;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 </style>
 
 <template>
@@ -87,19 +94,19 @@
     </div>
     <div class="row">
         <div class="board board1">
-            <h2>本年度募集项目完成比</h2>
+            <h2>本年度募集项目完成比<span class="rate">{{ collectProjectRate }}</span></h2>
             <div class="main">
                 <canvas id="pie-collecatproject"></canvas>
             </div>
         </div>
         <div class="board board2">
-            <h2>本年度募集金额完成比</h2>
+            <h2>本年度募集金额完成比<span class="rate">{{ collectAmountRate }}</span></h2>
             <div class="main">
                 <canvas id="pie-collectamount"></canvas>
             </div>
         </div>
         <div class="board board3 recast-board">
-            <h2>本年度复投率</h2>
+            <h2>本年度复投率完成比<span class="rate">{{ reCast.rate }}%</span></h2>
             <div class="main">
                 <canvas id="pie-recast"></canvas>
             </div>
@@ -119,11 +126,11 @@ export default {
     data: () => {
         return {
             reCast: {},
-            collectProject: [],
-            collectAmount: [],
             person_statisticst: [],
             total_amount: '',
             projects_num: '',
+            collectProjectRate: '',
+            collectAmountRate: ''
         }
     },
     components: {
@@ -133,6 +140,7 @@ export default {
 
         axios.get('dashBoard/collectProject.htm').then((response) => {
             const piecp = document.getElementById("pie-collecatproject");
+            this.collectProjectRate = response.data.data.rate
             new Chart(piecp, {
                 type: 'pie',
                 data: {
@@ -156,14 +164,11 @@ export default {
                     responsive: true
                 }
             })
-            this.collectProject = [{
-                lbl: '年度项目量达成率',
-                val: response.data.data.rate
-            }]
         })
 
         axios.get('dashBoard/collectAmount.htm').then((response) => {
-            const pieca = document.getElementById("pie-collectamount");
+            const pieca = document.getElementById("pie-collectamount")
+            this.collectAmountRate = response.data.data.rate
             new Chart(pieca, {
                 type: 'pie',
                 data: {
@@ -188,10 +193,6 @@ export default {
                 }
             })
 
-            this.collectAmount = [{
-                lbl: '年度项目金额达成率',
-                val: response.data.data.rate
-            }]
         })
 
         axios.get('dashBoard/reCast.htm').then((response) => {
@@ -207,11 +208,11 @@ export default {
                 type: 'doughnut',
                 data: {
                     labels: [
-                        '当前复投率(' + this.reCast.rate + '%)',
+                        '当前复投率(' + this.reCast.targetRate * this.reCast.rate / 100 + '%)',
                         '目标复投率(' + this.reCast.targetRate + '%)'
                     ],
                     datasets: [{
-                        data: [this.reCast.rate, this.reCast.targetRate],
+                        data: [this.reCast.targetRate * this.reCast.rate / 100, this.reCast.targetRate],
                         backgroundColor: [
                             "#FF6384",
                             "#36A2EB"
@@ -246,8 +247,7 @@ export default {
             }]
         })
     },
-    mounted: function() {
-    }
+    mounted: function() {}
 }
 
 </script>
