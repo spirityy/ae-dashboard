@@ -10,12 +10,35 @@
             padding: 0 2%;
             .lbl {
                 color: #C1C1C1;
-                font-size: 0.7vw;
+                font-size: 0.9vw;
             }
             .val {
                 color: #323232;
-                font-size: 1vw;
+                font-size: 1.2vw;
                 font-weight: bold;
+            }
+        }
+    }
+}
+
+.col4-tc {
+    ul li {
+      display: inline-block;
+      width: 21%;
+      text-align: center;
+    }
+}
+
+.project-top,
+.project-user {
+    li {
+        &:last-child {
+            float: right;
+            .lbl{
+              font-size: 1.1vw;
+            }
+            .val{
+              font-size: 1.3vw;
             }
         }
     }

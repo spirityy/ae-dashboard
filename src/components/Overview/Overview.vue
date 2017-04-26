@@ -56,7 +56,7 @@
 
 h2 > .rate {
     float: right;
-    color:  #BA6A5D;
+    color: #BA6A5D;
     font-size: 18px;
     font-weight: bold;
 }
@@ -88,7 +88,7 @@ h2 > .rate {
         <div class="board">
             <h2>平台用户统计</h2>
             <div class="main">
-                <column :cols="statisticst"></column>
+                <column class="col4-tc" :cols="statisticst"></column>
             </div>
         </div>
     </div>

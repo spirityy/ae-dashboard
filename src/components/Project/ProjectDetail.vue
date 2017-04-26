@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" scoped>
 
 .topbar {
     margin-bottom: 20px;
@@ -28,9 +28,9 @@
         font-weight: normal;
     }
     .board {
-      .main{
-        padding: 2% 4%;
-      }
+        .main {
+            padding: 2% 4%;
+        }
     }
 }
 
@@ -48,7 +48,7 @@
     <div class="board">
         <h2 class="pro-name">{{proName}}<span>No.{{id}}</span></h2>
         <div class="main">
-            <column :cols="ProjectBase"></column>
+            <column class="project-top" :cols="ProjectBase"></column>
         </div>
     </div>
     <div class="board">
@@ -59,8 +59,8 @@
     </div>
     <div class="board">
         <h2>项目人数</h2>
-        <div class="main">
-            <column :cols="ProjectPeople"></column>
+        <div class="main project-user">
+            <column class="project-user" :cols="ProjectPeople"></column>
         </div>
     </div>
 </div>
@@ -76,7 +76,7 @@ export default {
     data: function() {
         return {
             proName: '',
-            id:1 ,
+            id: 1,
             ProjectBase: [],
             ProjectAmount: [],
             ProjectPeople: []
@@ -92,7 +92,7 @@ export default {
             }
         }).then((response) => {
             //set Title
-            this.proName = document.title= response.data.data.proName
+            this.proName = document.title = response.data.data.proName
             this.id = response.data.data.id
 
             this.ProjectBase = [{
@@ -100,7 +100,7 @@ export default {
                 val: response.data.data.status
             }, {
                 lbl: '融资目标',
-                val: response.data.data.proFinancieAmount+'万元'
+                val: response.data.data.proFinancieAmount + '万元'
             }, {
                 lbl: '募集完成比',
                 val: response.data.data.fundRate
@@ -108,10 +108,10 @@ export default {
 
             this.ProjectAmount = [{
                 lbl: '支付成功总金额',
-                val: response.data.data.amount+'万元'
+                val: response.data.data.amount + '万元'
             }, {
                 lbl: '已退款金额',
-                val: response.data.data.refund+'万元'
+                val: response.data.data.refund + '万元'
             }]
 
             this.ProjectPeople = [{
